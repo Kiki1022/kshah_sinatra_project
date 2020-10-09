@@ -1,0 +1,36 @@
+User can create, read, update and delete an post.
+
+Interface:
+ -User Can create an appointment
+ -User can submit a appointment
+ -User can edit a appointment
+ -User can delete a appointment
+
+ User class
+   x attributes  :username, :password
+   - user signs up, logs in 
+   x has many appointments
+   
+
+   User controller and views
+   x'/users/signup' => renders signup form 
+   x'/users/signup' => processes sign up form, creates user, appointment
+   -'/users/login' => renders login form
+   -'/users/login' => processes login form, appointment
+   -need to set sessions
+   -user can view their feed(homepage) with option to view profile
+
+
+   Appointment class
+   -attributes :date, :time, :event, :price, :special_requests
+   -appointment belongs to user
+
+   Appointment Controller and views
+   -'/appointments/new' renders new appt form
+   - '/appointments' submits appointment
+   -'/appointments' renders all appointments #read capability
+   -'/appointments/:id' renders one instance of appointments #read capability
+   -'/appointments/:id/edit renders update form for an instance
+   -/appointments/:id' updates instance
+   -'/orders/:id/delete' deletes instance
+
