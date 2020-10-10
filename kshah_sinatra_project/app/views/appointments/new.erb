@@ -1,10 +1,14 @@
-<h1> this is the appointment form<h1>
+<h2>
 <form action='/appointments' method="POST">
 Client Name: <input type=text name="name"><br>
 Email: <input type=text name="email"><br>
 Date and Time of Service: <input type="datetime-local" name="date"><br>
-Rate: $<input type=text name="rate"><br>
+Look:<br> <input type="radio" name="event" value="Formal Affair"> Formal Affair<br>
+<input type="radio" name="event" value="Photo Session"> Photo Session<br>
+<input type="radio" name="event" value="Day Look"> Day Look<br>
+<input type="radio" name="event" value="Night Out"> Night Out<br>
+Rate: $<input type="text" name="rate"><br>
 <input type=submit value="Book Appointment">
 </form>
-
+</h2>
 
