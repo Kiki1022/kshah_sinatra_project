@@ -10,17 +10,17 @@ class AppointmentController < ApplicationController #inherits all configurations
         redirect "/appointments/#{@appointment.id}"
     end
 
-    get '/appointments/:id' do
+    get '/appointments/:id' do #read individual instance of an appointment 
         @appointment = Appointment.find(params[:id]) 
         erb :'/appointments/show'
     end
   
-    get '/appointments' do
+    get '/appointments' do #read all instances in Appointment class
         @appointments = Appointment.all
-        erb :'appointments/index'
+        erb :'/appointments/index'
     end
     
-    #read
+    
 
     #update
 
