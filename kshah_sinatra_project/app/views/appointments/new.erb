@@ -3,12 +3,17 @@
 Client Name: <input type=text name="name"><br>
 Email: <input type=text name="email"><br>
 Date and Time of Service: <input type="datetime-local" name="date"><br>
-Look:<br> <input type="radio" name="event" value="Formal Affair"> Formal Affair<br>
-<input type="radio" name="event" value="Photo Session"> Photo Session<br>
-<input type="radio" name="event" value="Day Look"> Day Look<br>
-<input type="radio" name="event" value="Night Out"> Night Out<br>
+Look:
+<select name="event">
+<option value="Formal Affair" selected>Formal Affair</option>
+<option value="Photo Session">Photo Session</option>
+<option value="Day Look">Day Look</option>
+<option value="Night Out">Night Look</option>
+</select><br>
 Rate: $<input type="text" name="rate"><br>
 <input type=submit value="Book Appointment">
 </form>
 </h2>
+
+
 
