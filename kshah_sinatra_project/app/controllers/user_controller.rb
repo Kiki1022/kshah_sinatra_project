@@ -6,7 +6,7 @@ class UserController < ApplicationController
     
     post '/users/signup' do
         @user = User.create(params)
-        redirect "/users/#{@user.id}"
+        redirect "/users/#{@user.id}" 
     end
 
     get '/users/:id' do

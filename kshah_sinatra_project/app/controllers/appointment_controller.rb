@@ -10,7 +10,7 @@ class AppointmentController < ApplicationController #inherits all configurations
         redirect "/appointments/#{@appointment.id}"
     end
 
-    get '/appointments/:id' do #read individual instance of an appointment 
+    get '/appointments/:id' do #read individual instance of an appointment that matches id number
         @appointment = Appointment.find(params[:id]) 
         erb :'/appointments/show'
     end
@@ -20,9 +20,26 @@ class AppointmentController < ApplicationController #inherits all configurations
         erb :'/appointments/index'
     end
     
+    get '/appointments/:id/edit' do
+        @appointment = Appointment.find(params[:id])
+        erb :'/appointments/edit'
+    end
     
+    patch '/appointments/:id' do
+        binding.pry
+        @appointment = Appointment.find(params[:id])
+        @appointment.name = params[:name]
+        @appointment.email = params[:email]
+        @appointment.date = params[:date]
+        @appointment.event = params[:event]
+        @appointment.rate = params[rate]
+        @appointment.image_url = params[image_url]
+        @appointment.save
+        redirect "/appointments/#{@appointment.id}"
+    end
 
     #update
+   
 
     #delete
 
