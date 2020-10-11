@@ -3,7 +3,8 @@
 <input type="hidden" name="_method" value="patch">
 Client Name: <input type="text" value="<%=@appointment.name%>" name="name"><br>
 Email: <input type=text value="<%=@appointment.email%>" name="email"><br>
-Date and Time of Service: <input type="text" value="<%= @appointment.date.strftime("%A, %d %b %Y %l:%M %p") %>" name="date"><br>
+Change: <%=@appointment.date.strftime("%A, %d %b %Y %l:%M %p") %> <br>
+To: <input type="datetime-local" value="<%= @appointment.date.strftime("%A, %d %b %Y %l:%M %p") %>" name="date"><br>
 Look:
 <select name="event">
 <option value="Formal Affair" value="<%=@appointment.event%>" selected>Formal Affair</option>

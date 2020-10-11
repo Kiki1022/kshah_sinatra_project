@@ -26,22 +26,26 @@ class AppointmentController < ApplicationController #inherits all configurations
     end
     
     patch '/appointments/:id' do
-        binding.pry
+        
         @appointment = Appointment.find(params[:id])
         @appointment.name = params[:name]
         @appointment.email = params[:email]
         @appointment.date = params[:date]
         @appointment.event = params[:event]
-        @appointment.rate = params[rate]
-        @appointment.image_url = params[image_url]
+        @appointment.rate = params[:rate]
         @appointment.save
         redirect "/appointments/#{@appointment.id}"
     end
 
-    #update
+    delete '/appointments/:id' do
+        binding.pry
+        @appointment = Appointment.find(params[:id])
+        @appointment.destroy
+        redirect to '/appointments'
+    end
    
 
-    #delete
+
 
 
 end
