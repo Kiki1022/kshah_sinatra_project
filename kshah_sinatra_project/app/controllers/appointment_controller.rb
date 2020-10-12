@@ -38,7 +38,6 @@ class AppointmentController < ApplicationController #inherits all configurations
     end
 
     delete '/appointments/:id' do
-        binding.pry
         @appointment = Appointment.find(params[:id])
         @appointment.destroy
         redirect to '/appointments'
