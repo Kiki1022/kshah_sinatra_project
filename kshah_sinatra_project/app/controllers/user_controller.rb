@@ -5,12 +5,16 @@ class UserController < ApplicationController
     end
     
     post '/users/signup' do #now we created user object, they have id we can utilize
+        if params[:username] == "" && params[:password] == ""
+            redirect "/users/signup"
+        else
         @user = User.create(
             username: params[:username],
             password: params[:password]
         )
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}" 
+        end
     end
 
     get '/users/login' do
@@ -22,7 +26,7 @@ class UserController < ApplicationController
 
     post '/users/login' do
       @user =  User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field
-        
+
     end
 
     get '/users/:id' do
