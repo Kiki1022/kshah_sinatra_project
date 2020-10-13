@@ -21,12 +21,18 @@ class UserController < ApplicationController
         #if user is logged in 
         #redirect to their home page
         #else, show them the login form
-        erb :"/users/login"
+        erb :'/users/login'
     end
 
     post '/users/login' do
       @user =  User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field
 
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            redirect "/users/#{@user.id}"
+        else
+            redirect "/users/login"
+        end
     end
 
     get '/users/:id' do
