@@ -1,10 +1,10 @@
-<h2>Your appointment:<h2>
-Name: <%= @appointment.name %><br>
-Email: <%= @appointment.email %><br>
-Look: <%= @appointment.event %><br>
-Rate: $<%= @appointment.rate %><br>
+<h2>Your Client:<h2>
+Name: <%= @client.name %><br>
+Email: <%= @client.email %><br>
+Look: <%= @client.event %><br>
+Rate: $<%= @client.rate %><br>
 
-<form action="/appointments/<%= @appointment.id %>" method="post">
+<form action="/clients/<%= @client.id %>" method="post">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="Delete">
 </form>

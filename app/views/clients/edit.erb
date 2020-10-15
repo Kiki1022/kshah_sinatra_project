@@ -1,16 +1,16 @@
 <h2>
-<form action="/appointments/<%= @appointment.id %>" method="POST">
+<form action="/clients/<%= @client.id %>" method="POST">
 <input type="hidden" name="_method" value="patch">
-Client Name: <input type="text" value="<%=@appointment.name%>" name="name"><br>
-Email: <input type=text value="<%=@appointment.email%>" name="email"><br>
+Client Name: <input type="text" value="<%=@client.name%>" name="name"><br>
+Email: <input type=text value="<%=@client.email%>" name="email"><br>
 Look:
 <select name="event">
-<option value="Formal Affair" value="<%=@appointment.event%>" selected>Formal Affair</option>
-<option value="Photo Session" value="<%=@appointment.event%>" selected>Photo Session</option>
-<option value="Day Look" value="<%=@appointment.event%>" selected>Day Look</option>
-<option value="Night Out" value="<%=@appointment.event%>" selected>Night Look</option>
+<option value="Formal Affair" value="<%=@client.event%>" selected>Formal Affair</option>
+<option value="Photo Session" value="<%=@client.event%>" selected>Photo Session</option>
+<option value="Day Look" value="<%=@client.event%>" selected>Day Look</option>
+<option value="Night Out" value="<%=@client.event%>" selected>Night Look</option>
 </select><br>
-Rate: $<input type="number" value="<%=@appointment.rate%>" name="rate"><br>
+Rate: $<input type="number" value="<%=@client.rate%>" name="rate"><br>
 <input type=submit value="Done">
 </form>
 </h2>
