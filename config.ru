@@ -6,5 +6,5 @@ end
 use Rack::MethodOverride
 run ApplicationController
 use UserController
-use AppointmentController
+use ClientController
 #mounting controller

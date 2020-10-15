@@ -37,9 +37,11 @@ Interface:
 Sessions:
 1. enable sessions
 2. utilize sessions hash in the methods that persist  user data into application 
-
-  def change
-    create_table :users do |t|
-      t.string :username
-      t.string :password_digest
+  
+   create_table :clients do |t|
+      t.string :name
+      t.string :email 
+      t.datetime :date
+      t.string :event
+      t.float :rate
     end

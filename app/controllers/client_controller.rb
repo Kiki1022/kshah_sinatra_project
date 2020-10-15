@@ -1,4 +1,4 @@
-class AppointmentController < ApplicationController #inherits all configurations that are avail in the very high level controller
+class ClientController < ApplicationController #inherits all configurations that are avail in the very high level controller
 
     #create
     get '/appointments/new' do
@@ -6,17 +6,17 @@ class AppointmentController < ApplicationController #inherits all configurations
     end
 
     post '/appointments' do
-        @appointment = Appointment.create(params)
+        @client = Client.create(params)
         redirect "/appointments/#{@appointment.id}"
     end
 
     get '/appointments/:id' do #read individual instance of an appointment that matches id number
-        @appointment = Appointment.find(params[:id]) 
+        @client = Client.find(params[:id]) 
         erb :'/appointments/show'
     end
   
     get '/appointments' do #read all instances in Appointment class
-        @appointments = Appointment.all
+        @clients = Client.all
         erb :'/appointments/index'
     end
     
@@ -27,19 +27,18 @@ class AppointmentController < ApplicationController #inherits all configurations
     
     patch '/appointments/:id' do
         
-        @appointment = Appointment.find(params[:id])
-        @appointment.name = params[:name]
-        @appointment.email = params[:email]
-        @appointment.date = params[:date]
-        @appointment.event = params[:event]
-        @appointment.rate = params[:rate]
-        @appointment.save
+        @client = Client.find(params[:id])
+        @client.name = params[:name]
+        @client.email = params[:email] 
+        @client.event = params[:event]
+        @client.rate = params[:rate]
+        @client.save
         redirect "/appointments/#{@appointment.id}"
     end
 
     delete '/appointments/:id' do
-        @appointment = Appointment.find(params[:id])
-        @appointment.destroy
+        @client = Client.find(params[:id])
+        @client.destroy
         redirect to '/appointments'
     end
    
