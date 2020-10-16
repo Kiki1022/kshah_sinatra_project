@@ -10,7 +10,6 @@ class ClientController < ApplicationController #inherits all configurations that
         @client.user = current_user
         @client.save
         redirect "/clients/#{@client.id}"
-
     end
 
     get '/clients/:id' do #read individual instance of an appointment that matches id number
@@ -38,11 +37,10 @@ class ClientController < ApplicationController #inherits all configurations that
         @client.event = params[:event]
         @client.rate = params[:rate]
         @client.save
-       
-             redirect "/clients/#{@client.id}"
-        else
-            redirect '/users/login'
-        end
+                    redirect "/clients/#{@client.id}"
+                else
+                    redirect '/users/login'
+            end
     end
 
     delete '/clients/:id' do
