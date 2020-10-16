@@ -25,12 +25,13 @@ class UserController < ApplicationController
     end
 
     post '/users/login' do
-      @user =  User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field
+      @user =  User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field eg username or pw
 
-        if @user && @user.authenticate(params[:password])
-            session[:user_id] = @user.id
-            redirect "/users/#{@user.id}"
+        if @user && @user.authenticate(params[:password]) #find the user by email. hash[:key] params[:password]. authenticate instance of user
+            session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
+            redirect "/users/#{@user.id}" #interpolate current user id
         else
+            #show error message?
             redirect "/users/login"
         end
     end

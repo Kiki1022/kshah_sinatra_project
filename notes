@@ -38,10 +38,15 @@ Sessions:
 1. enable sessions
 2. utilize sessions hash in the methods that persist  user data into application 
   
-   create_table :clients do |t|
-      t.string :name
-      t.string :email 
-      t.datetime :date
-      t.string :event
-      t.float :rate
-    end
+Need to:
+have "edit" button next to "delete" button on clients/:id
+need to do somethng in ClientController?
+
+need to have user be able to successfully log out
+CSS 
+ Associations (& validations if you wish to use them -- you’ll at least need a
+  validator to protect against duplicate login credentials across different users,
+  usually username or email)
+
+  Start with your ApplicationController helpers - #logged_in? and #current_user
+- add your login/signup/signout routes

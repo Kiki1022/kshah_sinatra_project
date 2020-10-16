@@ -8,3 +8,8 @@ Rate: $<%= @client.rate %><br>
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="Delete">
 </form>
+
+<form action="/clients/<%= @client.id %>/edit" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="submit" value="Edit">
+</form>
