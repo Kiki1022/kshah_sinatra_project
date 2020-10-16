@@ -2,10 +2,12 @@
 <h2>Your Upcoming Appointments:<h2>
 
 <% @clients.each do |a| %>
+
     <h3>Name: <%= a.name %><h2><br>
     <h3>Email: <%= a.email %><h2><br>
     <h2>Event: <%= a.event %><h2><br>
     <h2>Rate: $<%= a.rate %><h2><br>
+    <a href="/clients/<%= a.id %>/edit">Edit</a>
     <%end%>
     
 
