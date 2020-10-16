@@ -45,4 +45,12 @@ class UserController < ApplicationController
         @user = User.all
         erb :'/users/index'
     end
+
+    get '/logout' do 
+        session.clear
+
+        redirect '/'
+    end
+
+
 end
