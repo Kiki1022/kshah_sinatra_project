@@ -4,6 +4,9 @@ Email: <%= @client.email %><br>
 Look: <%= @client.event %><br>
 Rate: $<%= @client.rate %><br>
 
+<form action="/clients/<%= @client.id %>/edit">
+<input type="submit" value="Edit">
+</form>
 
 
 <form action="/clients/<%= @client.id %>" method="post">
@@ -11,7 +14,4 @@ Rate: $<%= @client.rate %><br>
 <input type="submit" value="Delete">
 </form>
 
-<form action="/clients/<%= @client.id %>/edit">
-<input type="submit" value="Edit">
-</form>
 

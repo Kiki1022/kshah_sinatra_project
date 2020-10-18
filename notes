@@ -48,6 +48,5 @@ CSS
   validator to protect against duplicate login credentials across different users,
   usually username or email)
 
-need to have option for profile pic and bio on user/show page
-need to fix edit button
-add logout button
+
+need to have header at each site, home/clients/logout and under that "NEW CLIENT" 

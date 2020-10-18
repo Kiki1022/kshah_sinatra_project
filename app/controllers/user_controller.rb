@@ -4,14 +4,11 @@ class UserController < ApplicationController
         erb :'/users/signup' # do i have my user object here? no. we don't need session here b/c we don't knonw about user yet
     end
     
-    post '/users/signup' do #now we created user object, they have id we can utilize
-        if params[:username] == "" && params[:password] == ""
+    post '/users/signup' do #now we created user object, they have id we can utilize ##need to add code for if username is taken
+        if params[:username] == "" || params[:password] == ""
             redirect "/users/signup"
         else
-        @user = User.create(
-            username: params[:username],
-            password: params[:password]
-        )
+        
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}" 
         end
@@ -41,7 +38,7 @@ class UserController < ApplicationController
         erb :'/users/show'
     end
 
-    get 'users/all' do 
+    get 'users/all' do #why do i have this??
         @user = User.all
         erb :'/users/index'
     end
