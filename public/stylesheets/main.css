@@ -13,8 +13,61 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
-
-
 .welcome {
+  background-image: url(../images/makeuphomepage.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 15%;
+  display: flex;
+  align-items: center;
+  padding-left: 125px;
+}
+
+
+.welcome__title {
   font-weight: lighter;
+  margin-bottom: 10px;
+
+}
+
+.welcome__window {
+  background-color: white;
+  width: 100%;
+  max-width: 550px;
+  padding: 100px 50px;
+  box-shadow:
+  0 1.3px 3.6px rgba(0, 0, 0, 0.024),
+  0 3.6px 10px rgba(0, 0, 0, 0.035),
+  0 8.7px 24.1px rgba(0, 0, 0, 0.046),
+  0 29px 80px rgba(0, 0, 0, 0.07)
+;
+border-radius: 10px;
+}
+
+.welcome__subtitle {
+  margin-bottom: 30px;
+}
+
+.button, .button:link, .button:visited {
+  background-color: lightcoral;
+  color: white;
+  display: block;
+  width: max-content;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: opacity .3s ease;
+}
+
+.button:hover {
+  opacity: .7;
+}
+
+.welcome__buttons {
+  display: flex;
+
+}
+
+.welcome__buttons > *:not(:last-child) {
+  margin-right: 20px;
 }
