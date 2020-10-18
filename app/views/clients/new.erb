@@ -14,5 +14,11 @@ Rate: $<input type="number" name="rate"><br>
 </form>
 
 
+<% if @errors %>
+  <% @errors.uniq.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+  <% end %>
+<% end %>
+
 
 

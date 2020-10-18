@@ -6,10 +6,16 @@ class ClientController < ApplicationController #inherits all configurations that
     end
 
     post '/clients' do
-        @client = Client.create(params) #do i need to change create to new?
-        @client.user = current_user
-        @client.save
+        @client = Client.new(params)
+        if !@client.save 
+            @errors = @client.errors.full_messages
+            erb :"clients/new"
+        else
+            @client = Client.create(params) #do i need to change create to new?
+            @client.user = current_user
+            @client.save
         redirect "/clients/#{@client.id}"
+        end
     end
 
     get '/clients/:id' do #read individual instance of an appointment that matches id number

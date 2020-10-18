@@ -5,10 +5,13 @@ class UserController < ApplicationController
     end
     
     post '/users/signup' do #now we created user object, they have id we can utilize ##need to add code for if username is taken
-        if params[:username] == "" || params[:password] == ""
-            redirect "/users/signup"
+        @user = User.new(params)
+        if !@user.save #params[:username] == "" && params[:password] == ""
+            #binding.pry
+            @errors = @user.errors.full_messages
+            erb :"users/signup"
         else
-        
+            @user = User.create(params)
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}" 
         end
