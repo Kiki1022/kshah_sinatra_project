@@ -1,3 +1,19 @@
+<nav>
+    <ul>
+        <li>
+            <a href="users/show">Home</a>
+        </li>
+        <li class="nav__border">
+            <a href="/clients">My Clients</a>
+        </li>
+        <li>
+             <a href="/">Log Out</a>
+        </li>
+    </ul>
+  </nav>
+
+
+
 
 <form action='/clients' method="POST">
 Client Name: <input type=text name="name"><br>
@@ -10,7 +26,7 @@ Look:
 <option value="Night Out">Night Look</option>
 </select><br>
 Rate: $<input type="number" name="rate"><br>
-<input type=submit value="Save Client">
+<input type=submit class="button" value="Save Client">
 </form>
 
 
@@ -20,22 +36,4 @@ Rate: $<input type="number" name="rate"><br>
   <% end %>
 <% end %>
 
-  <ul>
-        
-        <li>
-            <a href="/users/show">Home</a>
-        </li>
-        
-        <li>
-            <a href="/clients">My Clients</a>
-        </li>
-        
-        <li>
-            <a href="/clients/new">Create New Client</a>
-        </li>
-        
-        <li>
-             <a href="/">Log Out</a>
-        </li>
-    </ul>
-
+ 

@@ -1,16 +1,21 @@
 
-<h2>Welcome <%= @user.username %>!<h2>
+
 
 <nav>
     <ul>
         <li>
-            <a href="/clients">My Clients</a>
+            <a href="/clients/new">New Client</a>
         </li>
-        <li>
-            <a href="/clients/new">Create New Client</a>
+        <li class="nav__border">
+            <a href="/clients">My Clients</a>
         </li>
         <li>
              <a href="/">Log Out</a>
         </li>
     </ul>
 </nav>
+
+<h3>Welcome <%= @user.username %>!</h3>
+    <p><b>About</b></p>
+    <br>
+    <p>This application was created for makeup artists like you to create and store your clients information!</p>

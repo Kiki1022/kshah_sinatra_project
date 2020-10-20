@@ -1,8 +1,18 @@
-<h2>Existing User<h2>
-<form action="/users/login" method="POST">
-<label for="username">Username:</label>
-<input type="text" name="username" id="username" required>
-<label for="password">Password:</label>
-<input type="password" name="password" id="password" required>
-<input type="submit" value="Sign In">
-</form>
+
+<div class="login">
+    <div class="login__window">
+        <h2>Existing User</h2>
+        <form action="/users/login" method="POST">
+            <label>
+                <p>Username</p>
+                <input type="text" name="username" id="username" required>
+            </label>
+            <label> 
+                <p>Password</p>
+                <input type="password" name="password" id="password" required>
+            </label>
+           
+            <button class="button">Sign In</button>
+        </form>
+    </div>
+</div>

@@ -1,18 +1,24 @@
-<h2>New User<h2>
+
 <% if @errors %>
   <% @errors.uniq.each do |error| %>
     <p style="color: red;"><%= error %></p>
   <% end %>
 <% end %>
 
-
-<form action="/users/signup" method="POST">
-<label for="username">Username:</label>
-<input type="text" name="username" id="username" required>
-<label for="password">Password:</label>
-<input type="password" name="password" id="password" required>
-<input type="submit" value="Sign Up">
-</form>
-
-<nav>
-</nav>
+<div class="signup">
+    <div class="signup__window">
+        <h2>New User</h2>
+        <form action="/users/signup" method="POST">
+            <label>
+                <p>Username</p>
+                <input type="text" name="username" id="username" required>
+            </label>
+            <label> 
+                <p>Password</p>
+                <input type="password" name="password" id="password" required>
+            </label>
+           
+            <button class="button">Sign In</button>
+        </form>
+    </div>
+</div>

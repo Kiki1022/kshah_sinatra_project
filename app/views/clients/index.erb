@@ -1,3 +1,17 @@
+<nav>
+    <ul>
+        <li>
+            <a href="users/show">Home</a>
+        </li>
+        <li class="nav__border">
+            <a href="/clients">My Clients</a>
+        </li>
+        <li>
+             <a href="/">Log Out</a>
+        </li>
+    </ul>
+    <a href="/clients/new" class="button">New Client</a>
+</nav>
 
 <h2>My Clients<h2>
 
@@ -8,17 +22,6 @@
     <h3>Email: <%= a.email %><h2><br>
     <h2>Event: <%= a.event %><h2><br>
     <h2>Rate: $<%= a.rate %><h2><br>
-    <a href="/clients/<%= a.id %>/edit">Edit</a>
+    <a href="/clients/<%= a.id %>/edit" class="button">Edit</a>
     <%end%>
     
-  <ul>
-        <li>
-            <a href="/clients">My Clients</a>
-        </li>
-        <li>
-            <a href="/clients/new">Create New Client</a>
-        </li>
-        <li>
-             <a href="/">Log Out</a>
-        </li>
-    </ul>

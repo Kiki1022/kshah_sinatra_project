@@ -1,3 +1,18 @@
+<nav>
+    <ul>
+        <li>
+            <a href="/clients/new">New Client</a>
+        </li>
+        <li class="nav__border">
+            <a href="/clients">My Clients</a>
+        </li>
+        <li>
+             <a href="/">Log Out</a>
+        </li>
+    </ul>
+    <a href="/clients/new" class="button">New Client</a>
+</nav>
+
 <h2>Your Client:<h2>
 Name: <%= @client.name %><br>
 Email: <%= @client.email %><br>
@@ -5,27 +20,13 @@ Look: <%= @client.event %><br>
 Rate: $<%= @client.rate %><br>
 
 <form action="/clients/<%= @client.id %>/edit">
-<input type="submit" value="Edit">
+    <input type="submit" class="button" value="Edit">
 </form>
 
 
 <form action="/clients/<%= @client.id %>" method="post">
-<input type="hidden" name="_method" value="delete">
-<input type="submit" value="Delete">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" class="button" value="Delete">
 </form>
 
 
-  <ul>
-        <li>
-            <a href="/users/show">Home</a>
-        </li>
-        <li>
-            <a href="/clients">My Clients</a>
-        </li>
-        <li>
-            <a href="/clients/new">Create New Client</a>
-        </li>
-        <li>
-             <a href="/">Log Out</a>
-        </li>
-    </ul>
