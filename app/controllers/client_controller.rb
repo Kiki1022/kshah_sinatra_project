@@ -1,5 +1,7 @@
-class ClientController < ApplicationController #inherits all configurations that are avail in the very high level controller
+#require 'rack-flash'
 
+class ClientController < ApplicationController #inherits all configurations that are avail in the very high level controller
+    #use Rack::Flash
     #create
     get '/clients/new' do
         erb :'clients/new'
