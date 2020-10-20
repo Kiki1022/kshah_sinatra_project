@@ -26,7 +26,9 @@ class ApplicationController < Sinatra::Base
 
   
     def current_user #keeps track of logged in user
-      User.find_by(id: session[:user_id]) #want this to return truthy or falsey
+     #@current_user =  User.find(id: session[:user_id]) #want this to return truthy or falsey
+     @current_user ||= User.find(session[:user_id])
+
     end
   end
 end

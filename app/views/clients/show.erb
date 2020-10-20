@@ -29,4 +29,8 @@ Rate: $<%= @client.rate %><br>
     <input type="submit" class="button" value="Delete">
 </form>
 
-
+<% if @errors %>
+  <% @errors.uniq.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+  <% end %>
+<% end %>

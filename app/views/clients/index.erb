@@ -25,3 +25,8 @@
     <a href="/clients/<%= a.id %>/edit" class="button">Edit</a>
     <%end%>
     
+<% if @errors %>
+  <% @errors.uniq.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+  <% end %>
+<% end %>

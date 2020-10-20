@@ -12,23 +12,19 @@
     </ul>
   </nav>
 
-
-
-
 <form action='/clients' method="POST">
-Client Name: <input type=text name="name"><br>
-Email: <input type="email" name="email"><br>
-Look:
-<select name="event">
-<option value="Formal Affair" selected>Formal Affair</option>
-<option value="Photo Session">Photo Session</option>
-<option value="Day Look">Day Look</option>
-<option value="Night Out">Night Look</option>
-</select><br>
-Rate: $<input type="number" name="rate"><br>
-<input type=submit class="button" value="Save Client">
+  Client Name: <input type=text name="name"><br>
+  Email: <input type="email" name="email"><br>
+  Look:
+    <select name="event">
+      <option value="Formal Affair" selected>Formal Affair</option>
+      <option value="Photo Session">Photo Session</option>
+      <option value="Day Look">Day Look</option>
+      <option value="Night Out">Night Look</option>
+    </select><br>
+  Rate: $<input type="number" name="rate"><br>
+    <input type=submit class="button" value="Save Client">
 </form>
-
 
 <% if @errors %>
   <% @errors.uniq.each do |error| %>

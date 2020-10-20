@@ -1,20 +1,24 @@
-<h2>
+
 <form action="/clients/<%= @client.id %>" method="POST">
-<input type="hidden" name="_method" value="patch">
-Client Name: <input type="text" value="<%=@client.name%>" name="name"><br>
-Email: <input type="email" value="<%=@client.email%>" name="email"><br>
-Look:
-<select name="event">
-<option value="Formal Affair" value="<%=@client.event%>" selected>Formal Affair</option>
-<option value="Photo Session" value="<%=@client.event%>" selected>Photo Session</option>
-<option value="Day Look" value="<%=@client.event%>" selected>Day Look</option>
-<option value="Night Out" value="<%=@client.event%>" selected>Night Look</option>
-</select><br>
-Rate: $<input type="number" value="<%=@client.rate%>" name="rate"><br>
-<input type=submit class="button" value="Done">
+        <input type="hidden" name="_method" value="patch">
+            Client Name: <input type="text" value="<%=@client.name%>" name="name"><br>
+            Email: <input type="email" value="<%=@client.email%>" name="email"><br>
+            Look:
+                <select name="event">
+                    <option value="Formal Affair" value="<%=@client.event%>" selected>Formal Affair</option>
+                    <option value="Photo Session" value="<%=@client.event%>" selected>Photo Session</option>
+                    <option value="Day Look" value="<%=@client.event%>" selected>Day Look</option>
+                    <option value="Night Out" value="<%=@client.event%>" selected>Night Look</option>
+                </select><br>
+            Rate: $<input type="number" value="<%=@client.rate%>" name="rate"><br>
+            <input type=submit class="button" value="Done">
 </form>
-</h2>
 
 
 
+<% if @errors %>
+  <% @errors.uniq.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+  <% end %>
+<% end %>
 
