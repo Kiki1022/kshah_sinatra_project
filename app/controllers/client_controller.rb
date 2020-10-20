@@ -19,16 +19,13 @@ class ClientController < ApplicationController #inherits all configurations that
     end
 
     get '/clients/:id' do #read individual instance of an appointment that matches id number
-        #binding.pry
-            @client = Client.find(params[:id]) 
-           
-           if logged_in? && @client.user == current_user
-            #@client.user = current_user
-           
-            erb :'/clients/show'
-           else
-            redirect 'users/login'
-        end
+        
+        @client = Client.find(params[:id]) 
+            if logged_in? && @client.user == current_user
+                erb :'/clients/show'
+            else
+                redirect 'users/login'
+            end
     end
   
     get '/clients' do #read all instances in Appointment class
@@ -52,11 +49,11 @@ class ClientController < ApplicationController #inherits all configurations that
     patch '/clients/:id' do
         @client = Client.find(params[:id])
             if logged_in? && @client.user == current_user
-        @client.name = params[:name]
-        @client.email = params[:email] 
-        @client.event = params[:event]
-        @client.rate = params[:rate]
-        @client.save
+                @client.name = params[:name]
+                @client.email = params[:email] 
+                @client.event = params[:event]
+                @client.rate = params[:rate]
+                @client.save
                     redirect "/clients/#{@client.id}"
                 else
                     redirect "/users/login"

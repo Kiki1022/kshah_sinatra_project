@@ -10,7 +10,6 @@ class UserController < ApplicationController
             @errors = @user.errors.full_messages
             erb :"/users/signup"
         else
-            #@user = User.create(params)
             session[:user_id] = @user.id
             erb :"/users/show" 
         end
@@ -24,25 +23,25 @@ class UserController < ApplicationController
     end
 
     post '/users/login' do
-      @user =  User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field eg username or pw
+        @user = User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field eg username or pw
 
-        if @user && @user.authenticate(params[:password]) #find the user by email. hash[:key] params[:password]. authenticate instance of user
-            session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
-            redirect "/users/#{@user.id}" #interpolate current user id
-        else
-            redirect "/users/login"
-        end
+            if @user && @user.authenticate(params[:password]) #find the user by email. hash[:key] params[:password]. authenticate instance of user
+                session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
+                redirect "/users/#{@user.id}" #interpolate current user id
+            else
+                erb :"/users/login"
+            end
     end
 
     get '/users/:id' do #logged in user's homepage
         @user = User.find(params[:id]) 
-        erb :'/users/show'
+        #@user.user == current_user
+            if logged_in? && @user == current_user #still letting current user see other user homepage
+                erb :'/users/show'
+            else
+                erb :'/users/login'
+            end
     end
-
-    # get 'users/all' do #why do i have this??
-    #     @user = User.all
-    #     erb :'/users/index'
-    # end
 
     get '/logout' do 
         session.clear
