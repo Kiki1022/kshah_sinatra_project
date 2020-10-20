@@ -1,6 +1,16 @@
 
 <h2>Welcome <%= @user.username %>!<h2>
 
-<p><a href="/clients/new">Create New Client</a></p>
-<p><a href="/clients">View My Clients</a></p>
-<p><a href="/">Log Out</a></p>
+<nav>
+    <ul>
+        <li>
+            <a href="/clients">My Clients</a>
+        </li>
+        <li>
+            <a href="/clients/new">Create New Client</a>
+        </li>
+        <li>
+             <a href="/">Log Out</a>
+        </li>
+    </ul>
+</nav>

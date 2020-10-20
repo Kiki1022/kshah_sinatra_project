@@ -1,6 +1,7 @@
 
 <h2>My Clients<h2>
 
+<% @clients = current_user.clients %> 
 <% @clients.each do |a| %>
 
     <h3>Name: <%= a.name %><h2><br>
@@ -10,3 +11,14 @@
     <a href="/clients/<%= a.id %>/edit">Edit</a>
     <%end%>
     
+  <ul>
+        <li>
+            <a href="/clients">My Clients</a>
+        </li>
+        <li>
+            <a href="/clients/new">Create New Client</a>
+        </li>
+        <li>
+             <a href="/">Log Out</a>
+        </li>
+    </ul>

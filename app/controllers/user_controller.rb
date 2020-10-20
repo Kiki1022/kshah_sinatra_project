@@ -7,9 +7,8 @@ class UserController < ApplicationController
     post '/users/signup' do #now we created user object, they have id we can utilize ##need to add code for if username is taken
         @user = User.new(params)
         if !@user.save #params[:username] == "" && params[:password] == ""
-            #binding.pry
             @errors = @user.errors.full_messages
-            erb :"users/signup"
+            erb :"/users/signup"
         else
             @user = User.create(params)
         session[:user_id] = @user.id
@@ -31,20 +30,19 @@ class UserController < ApplicationController
             session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
             redirect "/users/#{@user.id}" #interpolate current user id
         else
-            #show error message?
             redirect "/users/login"
         end
     end
 
-    get '/users/:id' do
+    get '/users/:id' do #logged in user's homepage
         @user = User.find(params[:id]) 
         erb :'/users/show'
     end
 
-    get 'users/all' do #why do i have this??
-        @user = User.all
-        erb :'/users/index'
-    end
+    # get 'users/all' do #why do i have this??
+    #     @user = User.all
+    #     erb :'/users/index'
+    # end
 
     get '/logout' do 
         session.clear
