@@ -28,12 +28,12 @@ class ClientController < ApplicationController #inherits all configurations that
             end
     end
   
-    get '/clients' do #read all instances in Appointment class
-        if logged_in?
+    get '/clients' do #read all instances in Appointment class 
+        if logged_in? 
             @clients = current_user.clients 
             erb :'/clients/index'
         else
-          redirect '/users/login'
+            redirect :'/users/login'
         end
     end
     

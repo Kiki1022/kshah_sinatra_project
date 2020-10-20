@@ -35,7 +35,6 @@ class UserController < ApplicationController
 
     get '/users/:id' do #logged in user's homepage
         @user = User.find(params[:id]) 
-        #@user.user == current_user
             if logged_in? && @user == current_user #still letting current user see other user homepage
                 erb :'/users/show'
             else

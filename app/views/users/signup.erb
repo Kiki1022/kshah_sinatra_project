@@ -1,24 +1,24 @@
 
-<% if @errors %>
-  <% @errors.uniq.each do |error| %>
-    <p style="color: red;"><%= error %></p>
-  <% end %>
-<% end %>
+
 
 <div class="signup">
     <div class="signup__window">
         <h2>New User</h2>
         <form action="/users/signup" method="POST">
             <label>
-                <p>Username</p>
-                <input type="text" name="username" id="username" required>
-            </label>
+                <p>Username</p>  
+                <input type="text" name="username" id="username" required> 
+            </label> 
             <label> 
                 <p>Password</p>
                 <input type="password" name="password" id="password" required>
-            </label>
-           
+            </label> 
             <button class="button">Sign In</button>
         </form>
+        <% if @errors %>
+          <% @errors.uniq.each do |error| %>
+            <p style="color: red;"><%= error %></p>
+          <% end %>
+        <% end %>
     </div>
 </div>
