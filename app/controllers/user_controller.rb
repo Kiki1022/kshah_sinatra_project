@@ -24,13 +24,14 @@ class UserController < ApplicationController
     end
 
     post '/users/login' do
+     
         @user = User.find_by(username: params[:username])   #find will result to finding id number vs find_by will find a certain field eg username or pw
 
             if @user && @user.authenticate(params[:password]) #find the user by email. hash[:key] params[:password]. authenticate instance of user
                 session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
                 redirect "/users/#{@user.id}" #interpolate current user id
             else
-           
+                flash[:message] = "Incorrect credentials. Please try again"
                 redirect "/users/login"
             end
     end
@@ -40,7 +41,7 @@ class UserController < ApplicationController
             if logged_in? && @user == current_user #still letting current user see other user homepage
                 erb :'/users/show'
             else
-                flash.now[:error] = "#{@user.errors.full_messages.to_sentence}"
+              
                 erb :'/users/login' #redirect? or erb?
             end
     end

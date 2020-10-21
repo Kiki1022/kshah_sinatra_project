@@ -11,10 +11,12 @@
                 <p>Password</p>
                 <input type="password" name="password" id="password" required>
             </label>
-            <% if flash[:error] %>
-                <h3 style="color:red;"><%= flash[:error] %></h3>
+          <% if flash[:message] %>
+                <h3 style="color:red;"><%= flash[:message] %></h3>
             <% end %>
             <button class="button">Sign In</button>
         </form>
     </div>
 </div>
+
+  
