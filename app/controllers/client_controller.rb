@@ -63,6 +63,7 @@ class ClientController < ApplicationController #inherits all configurations that
     delete '/clients/:id' do
         @client = Client.find(params[:id])
         @client.destroy
+        flash[:message] = "Client Deleted."
         redirect to '/clients'
     end
 end

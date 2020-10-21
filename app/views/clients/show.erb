@@ -18,11 +18,12 @@ Name: <%= @client.name %><br>
 Email: <%= @client.email %><br>
 Look: <%= @client.event %><br>
 Rate: $<%= @client.rate %><br>
-
+<br>
 <form action="/clients/<%= @client.id %>/edit">
     <input type="submit" class="button" value="Edit">
 </form>
 
+<br>
 
 <form action="/clients/<%= @client.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
@@ -34,3 +35,5 @@ Rate: $<%= @client.rate %><br>
     <p style="color: red;"><%= error %></p>
   <% end %>
 <% end %>
+
+   

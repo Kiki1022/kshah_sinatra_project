@@ -1,8 +1,8 @@
     Welcome to Beautify Me. A web app for Makeup Artists to create and store their client's profile. 
 
-    This web application is available to all Makeup Artists that particpated the 2020 Beauty Expo in Atlanta, Ga. They were given a guest book that potential clients could fill out. With the guest book filled with client information and the web application to creat and store it, the Makeup Artist can create a database of their client's information. 
-
-    The information that was requested from the clients is the following:
+    This web application is available for Makeup Artists. With this tool, Makeup Artists can create client profiles. 
+        
+        This is the information you can store for your clients(all are required to create new client object):
         -Client Name
         -Client Email Address
         -Client Event they are interested in booking. The options are: formal affair, photo session, day look, or night out.
@@ -25,6 +25,9 @@ Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/Kiki1022/kshah_sinatra_project 
 (basically ur link to github project)
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct https://github.com/Kiki1022/kshah_sinatra_project/blob/main/CONTRIBUTING.md
+
 License
 The gem is available as open source under the terms of the MIT License https://opensource.org/licenses/MIT  
        
+Code of Conduct
+Everyone interacting in the SinatraRSSReader project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the Code of Conduct https://www.contributor-covenant.org/version/1/4/code-of-conduct/

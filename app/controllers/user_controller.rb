@@ -11,7 +11,7 @@ class UserController < ApplicationController
             redirect to "/users/signup"
         else
             session[:user_id] = @user.id
-            flash.now[:message] = "You have no clients! Create your first client profile now!"
+            flash.now[:message] = "Create your first client profile now!"
             erb :"/users/show" 
         end
     end
@@ -31,7 +31,7 @@ class UserController < ApplicationController
                 session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
                 redirect "/users/#{@user.id}" #interpolate current user id
             else
-                flash[:message] = "Incorrect credentials. Please try again"
+                flash[:message] = "Please check your credentials and try again"
                 redirect "/users/login"
             end
     end
@@ -41,13 +41,14 @@ class UserController < ApplicationController
             if logged_in? && @user == current_user #still letting current user see other user homepage
                 erb :'/users/show'
             else
-              
+                flash[:message] = "Oops! You can't do that! Log in to access your profile"
                 erb :'/users/login' #redirect? or erb?
             end
     end
 
     get '/logout' do 
         session.clear
+        flash[:message]= "You have successfully logged out."
         redirect '/'
     end
 
