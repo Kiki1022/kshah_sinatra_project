@@ -1,12 +1,24 @@
     Welcome to Beautify Me. A web app for Makeup Artists to create and store their client's profile. 
+    
+    The framework for my Sinatra Project was made possible thanks to the Sinatra App Generator Corneal and includes the following:
+        -HTML
+        -CSS
+        -Ruby
+        -SQLITE3
+        -Sinatra
+        -ActiveRecord
 
-    This web application is available for Makeup Artists. With this tool, Makeup Artists can create client profiles. 
+    So..about my Sinatra CRUD project, I created this web application for Makeup Artists. With this tool, Makeup Artists can create client profiles. As a makeup artist myself, I can say this is much needed!!
         
         This is the information you can store for your clients(all are required to create new client object):
         -Client Name
         -Client Email Address
-        -Client Event they are interested in booking. The options are: formal affair, photo session, day look, or night out.
-        -Client Rate(will be provided by the makeup artist to client)
+        -Client Event they are interested in bookin a makeup application for. The options are: 
+            -formal affair
+            -photo session
+            -day look
+            -night out.
+        -Client Rate(will be provided by the makeup artist to client for makeup application)
 
 To get started with the web application:
     -Run 'bundle install' in the terminal to install the gems required.
