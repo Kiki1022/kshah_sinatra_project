@@ -6,12 +6,12 @@ class UserController < ApplicationController
     
     post '/users/signup' do #now we created user object, they have id we can utilize ##need to add code for if username is taken
         @user = User.create(params)
-        if !@user.save #params[:username] == "" && params[:password] == ""
-            #@errors = @user.errors.full_messages
+        if !@user.save 
             flash[:error] = "#{@user.errors.full_messages.to_sentence}"
             redirect to "/users/signup"
         else
             session[:user_id] = @user.id
+            flash.now[:message] = "You have no clients! Create your first client profile now!"
             erb :"/users/show" 
         end
     end
@@ -30,7 +30,8 @@ class UserController < ApplicationController
                 session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
                 redirect "/users/#{@user.id}" #interpolate current user id
             else
-                erb :"/users/login"
+           
+                redirect "/users/login"
             end
     end
 
@@ -39,7 +40,8 @@ class UserController < ApplicationController
             if logged_in? && @user == current_user #still letting current user see other user homepage
                 erb :'/users/show'
             else
-                erb :'/users/login'
+                flash.now[:error] = "#{@user.errors.full_messages.to_sentence}"
+                erb :'/users/login' #redirect? or erb?
             end
     end
 
