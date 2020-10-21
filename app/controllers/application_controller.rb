@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions #enable the session hash
     set :session_secret, 'secret' #set session secret for an extra layer of security
+    register Sinatra::Flash
   end
 
   get "/" do

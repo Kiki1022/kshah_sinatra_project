@@ -15,10 +15,9 @@
             </label> 
             <button class="button">Sign In</button>
         </form>
-        <% if @errors %>
-          <% @errors.uniq.each do |error| %>
-            <p style="color: red;"><%= error %></p>
-          <% end %>
-        <% end %>
+       <% if flash[:error] %>
+<h3 style="color:red;"><%= flash[:error] %>
+<% end %>
+
     </div>
 </div>

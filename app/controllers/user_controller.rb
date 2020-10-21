@@ -7,8 +7,9 @@ class UserController < ApplicationController
     post '/users/signup' do #now we created user object, they have id we can utilize ##need to add code for if username is taken
         @user = User.create(params)
         if !@user.save #params[:username] == "" && params[:password] == ""
-            @errors = @user.errors.full_messages
-            erb :"/users/signup"
+            #@errors = @user.errors.full_messages
+            flash[:error] = "#{@user.errors.full_messages.to_sentence}"
+            redirect to "/users/signup"
         else
             session[:user_id] = @user.id
             erb :"/users/show" 

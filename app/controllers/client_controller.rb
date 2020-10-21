@@ -16,7 +16,7 @@ class ClientController < ApplicationController #inherits all configurations that
             @client = Client.create(params) #do i need to change create to new?
             @client.user = current_user
             @client.save
-        redirect "/clients/#{@client.id}"
+            redirect "/clients/#{@client.id}"
         end
     end
 

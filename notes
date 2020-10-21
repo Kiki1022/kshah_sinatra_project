@@ -50,3 +50,4 @@ CSS
 
 
 need to have header at each site, home/clients/logout and under that "NEW CLIENT" 
+flash[:error] = "#{user.errors.full_messages.to_sentence}. Please try again."
