@@ -31,7 +31,7 @@ class UserController < ApplicationController
                 session[:user_id] = @user.id #creating a key/value pair in the sessions hash for the user actually logs them in  
                 redirect "/users/#{@user.id}" #interpolate current user id
             else
-                flash[:message] = "Please check your credentials and try again"
+                flash[:message] = "Invalid username or password"
                 redirect "/users/login"
             end
     end

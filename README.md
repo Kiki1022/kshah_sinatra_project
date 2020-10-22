@@ -13,11 +13,11 @@
         This is the information you can store for your clients(all are required to create new client object):
         -Client Name
         -Client Email Address
-        -Client Event they are interested in bookin a makeup application for. The options are: 
-            -formal affair
-            -photo session
-            -day look
-            -night out.
+        -Client Event: 
+            -Formal Affair
+            -Photo Session
+            -Day Look
+            -Night Out.
         -Client Rate(will be provided by the makeup artist to client for makeup application)
 
 To get started with the web application:
@@ -30,7 +30,7 @@ To get started with the web application:
         Update - update an instance of your client object.
         Delete - delete an instance of your client object.
         
-    Happy clientaling! 
+    Happy clienteling! 
 
 
 Contributing

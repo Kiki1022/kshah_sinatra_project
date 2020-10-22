@@ -19,7 +19,7 @@
 <h2>My Clients<h2><br>
 <% @clients = current_user.clients %> 
 <% if @clients.count == 0 %>
-    <h2 style="color:lightcoral;">You have no clients. Select <a href="clients/new">New Client</a> to create a client profile</h2>
+    <h2 style="color:red;">You have no clients. Click <a href="clients/new">here</a> to create a client profile.</h2>
 <% else %>
     <% @clients.each do |a| %>
         <h3>Name: <%= a.name %><h2><br>

@@ -16,11 +16,8 @@
 </nav>
 
  <% if flash[:message] %>
-            <h2 style="color:lightcoral;"><%= flash[:message] %></h2>
-        <% end %><br>
+            <h2 style="color:red;"><%= flash[:message] %></h2>
+        <% end %>
 
-<h3>Welcome <%= @user.username %>!</h3>
-      
-    <p><b>About</b></p>
-    <br>
-    <p>This application was created for makeup artists like you to create and store your clients information!</p>
+<h2>  Welcome <%= @user.username %>! Choose from an option above.</h2><br>
+  
