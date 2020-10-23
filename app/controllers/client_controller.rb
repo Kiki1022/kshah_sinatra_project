@@ -1,4 +1,4 @@
-class ClientController < ApplicationController #inherits all configurations that are avail in the very high level controller
+class ClientController < ApplicationController
  
  
     get '/clients/new' do
@@ -7,28 +7,29 @@ class ClientController < ApplicationController #inherits all configurations that
 
     post '/clients' do
         @client = Client.new(params)
-        if !@client.save 
-            @errors = @client.errors.full_messages
-            erb :"clients/new"
-        else
-            @client = Client.create(params) #do i need to change create to new?
-            @client.user = current_user
-            @client.save
-            redirect "/clients/#{@client.id}"
-        end
+            if !@client.save 
+                @errors = @client.errors.full_messages
+                erb :"clients/new"
+            else
+                @client = Client.create(params)
+                @client.user = current_user
+                @client.save
+                redirect "/clients/#{@client.id}"
+            end
     end
 
-    get '/clients/:id' do #read individual instance of an appointment that matches id number
-        
+    get '/clients/:id' do 
         @client = Client.find(params[:id]) 
+            
             if logged_in? && @client.user == current_user
                 erb :'/clients/show'
             else
+                flash[:message] = "Stay in your lane boo!"
                 redirect 'users/login'
             end
     end
   
-    get '/clients' do #read all instances in Appointment class 
+    get '/clients' do 
         if logged_in? 
             @clients = current_user.clients 
             erb :'/clients/index'
@@ -39,15 +40,17 @@ class ClientController < ApplicationController #inherits all configurations that
     
     get '/clients/:id/edit' do
         @client = Client.find(params[:id])
+            
             if logged_in? && @client.user == current_user
-                erb :'/clients/edit'
-            else
-                redirect 'users/login'
-        end
+                    erb :'/clients/edit'
+                else
+                    redirect 'users/login'
+            end
     end
     
     patch '/clients/:id' do
         @client = Client.find(params[:id])
+
             if logged_in? && @client.user == current_user
                 @client.name = params[:name]
                 @client.email = params[:email] 

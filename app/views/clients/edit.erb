@@ -13,7 +13,11 @@
             Rate: $<input type="number" value="<%=@client.rate%>" name="rate"><br>
             <input type=submit class="button" value="Done">
 </form>
-
+<br>
+<form action="/clients/<%= @client.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" class="button" value="Delete">
+</form>
 
 
 <% if @errors %>
