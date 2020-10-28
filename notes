@@ -51,3 +51,10 @@ CSS
 
 need to have header at each site, home/clients/logout and under that "NEW CLIENT" 
 flash[:error] = "#{user.errors.full_messages.to_sentence}. Please try again."
+
+Study notes:
+ <form action="/users/login" method="POST"> i want to send data to this route(action), method is post. 
+ in our form the params keys come from the 'name' its convention to name it exactly what i have in my schema
+ 
+ has_secure_passowrd-
+ .authenticate method is something that has_secure_passowrd gives us. looks at salted 

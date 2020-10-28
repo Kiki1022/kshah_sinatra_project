@@ -1,4 +1,4 @@
-class ClientController < ApplicationController
+class ClientsController < ApplicationController
  
  
     get '/clients/new' do

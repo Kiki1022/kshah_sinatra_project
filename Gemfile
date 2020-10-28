@@ -10,7 +10,7 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
-gem 'tux'
+gem 'tux' #will drop us into our database
 gem 'sinatra-flash'
 
 group :test do
@@ -19,3 +19,4 @@ group :test do
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
+#group gems need to be explicitly called 
