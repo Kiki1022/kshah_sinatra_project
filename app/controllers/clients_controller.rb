@@ -24,8 +24,8 @@ class ClientsController < ApplicationController
             if logged_in? && @client.user == current_user
                 erb :'/clients/show'
             else
-                flash[:message] = "Stay in your lane boo!"
-                redirect 'users/login'
+                flash[:message] = "Stay in your lane boo! Sign in to see access your profile"
+                redirect '/'
             end
     end
   

@@ -55,6 +55,41 @@ flash[:error] = "#{user.errors.full_messages.to_sentence}. Please try again."
 Study notes:
  <form action="/users/login" method="POST"> i want to send data to this route(action), method is post. 
  in our form the params keys come from the 'name' its convention to name it exactly what i have in my schema
+ action is dictates where the form should go aka mailing address('/login') 
+ method is where we are actually sending our data back to. verb
+ name is attribute
+when we send a get request to our route, it renders our login form. that login form renders an erb file. in that file is a form that we can send back our data with. our actions dictates where the from will go, method tells us the verb in which we want to send the address back to.
+when we hit submit the params(username and password that was set by name="" in form) get sent to the post login route and we can use it to first find the our user with params[:username] and if user is foundor truthy, we move on then we seeif we can authenticate user. authenticate method is giving from has_secure_passowrd macro. what it does is takes in the plain text password from our user and compares it to the salted password living in the password digest column in our database bcrypt hashing algorithm compares it to 
+after user is authenticated, we had a key value pair to their session hash, this is what logs them in and welcomes them in. we are going to log you in by giving you a key value pair in the sessions hash of your user_id and then redirect to their show page in the interpolated dynamic route. 
+   get '/users/login' do #rendering login form(erb file) when we send a get request to this route
+        erb :'/users/login'
+    end
+
+    post '/users/login' do #receving data(params) from login form
+     
+        @user = User.find_by(username: params[:username])  #find my username b/c that is the data we are getting back in our params
+
+            if @user && @user.authenticate(params[:password]) #has_secure_password gives us authenticate method, we want to call authenticate off of user in their params hash(params[:password]) this is actually what is going to authenticate user
+                session[:user_id] = @user.id 
+                redirect "/users/#{@user.id}" #interpolated user's id and show correct profile for specific user
+            else
+                flash[:message] = "Invalid username or password"
+                redirect "/users/login"
+            end
+    end
+
+
  
  has_secure_passowrd-
+ but first we have to enable sessions. we do so in APplication Controller in configure block. 
+ [ ]know difference bw authenticate user and enabling session hash
  .authenticate method is something that has_secure_passowrd gives us. looks at salted 
+ creating key/value pair in the session hash using the user's id to log them in 
+ dictate key value pair session[:user.id] = user.id They are not officially logged in until there is a user id key with the value of their user id in the sessions hash
+ based on active record the user_id will always be a unique id
+
+ Helper method
+ keeps track of logged in user. if we want to reference the currently logged in user in other controllers than UsersController. 
+ We need to be able to reference current user so we can do CRUD for clients. Must know current user to create a client. will need user_id in the ClientController. 
+ do block for helper methods. 
+ how to find user that is logged in? we defined a session, we need to find user by key value pair 

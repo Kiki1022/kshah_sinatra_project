@@ -6,8 +6,8 @@ class ApplicationController < Sinatra::Base #inheriting from Sinatra
   configure do
     set :public_folder, 'public' #setting public folder public
     set :views, 'app/views' #configuring our views
-    enable :sessions #hash readily availble to our controllers
-    set :session_secret, 'secret' 
+    enable :sessions #hash readily availble to our controllers and enables session
+    set :session_secret, 'secret' #set a session secret for an extra layer of security
     register Sinatra::Flash
   end
 
@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base #inheriting from Sinatra
   helpers do #add functionality to application, can access in any controller
  
     def logged_in?
-      !!session[:user_id] #boolean to return truthy or falsey
+      !!session[:user_id] #boolean to return truthy or falsey if user is logged in or not
     end
 
     def current_user

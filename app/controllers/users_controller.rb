@@ -17,7 +17,7 @@ class UsersController < ApplicationController
             end
     end
 
-    get '/users/login' do #rendering login form
+    get '/users/login' do #rendering login form(erb file) when we send a get request to this route
         erb :'/users/login'
     end
 
@@ -27,21 +27,21 @@ class UsersController < ApplicationController
 
             if @user && @user.authenticate(params[:password]) #has_secure_password gives us authenticate method, we want to call authenticate off of user in their params hash(params[:password]) this is actually what is going to authenticate user
                 session[:user_id] = @user.id 
-                redirect "/users/#{@user.id}" 
+                redirect "/users/#{@user.id}" #interpolated user's id and show correct profile for specific user
             else
                 flash[:message] = "Invalid username or password"
                 redirect "/users/login"
             end
     end
 
-    get '/users/:id' do 
+    get '/users/:id' do #restful and dynamic, based on current user's id, id is ingested from previous post action
 
         @user = User.find(params[:id]) 
             if logged_in? && @user == current_user 
                 erb :'/users/show'
             else
-                flash.now[:message] = "Oops! You can't do that! Log in to access your profile"
-                erb :'/users/login' 
+                flash.now[:message] = "Oops! You can't do that! Sign Up or Log in to access your profile"
+                erb :'welcome' 
             end
     end
 
