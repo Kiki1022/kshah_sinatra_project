@@ -1,41 +1,42 @@
 class UsersController < ApplicationController
     
-    get '/users/signup' do #rendering signup form
+    get '/users/signup' do 
         erb :'/users/signup' 
     end
     
-    post '/users/signup' do #receiving data(params) from signup form
-        @user = User.create(params)
+    post '/users/signup' do 
+        @user = User.create(params) 
 
             if !@user.save 
                 flash[:error] = "#{@user.errors.full_messages.to_sentence}"
                 redirect to "/users/signup"
             else
-                session[:user_id] = @user.id
+                session[:user_id] = @user.id 
                 flash.now[:message] = "Create your first client profile now!"
                 erb :"/users/show" 
             end
+            
     end
 
-    get '/users/login' do #rendering login form(erb file) when we send a get request to this route
+    get '/users/login' do 
         erb :'/users/login'
     end
 
-    post '/users/login' do #receving data(params) from login form
+    post '/users/login' do 
      
-        @user = User.find_by(username: params[:username])  #find my username b/c that is the data we are getting back in our params
-
-            if @user && @user.authenticate(params[:password]) #has_secure_password gives us authenticate method, we want to call authenticate off of user in their params hash(params[:password]) this is actually what is going to authenticate user
+        @user = User.find_by(username: params[:username])  
+        
+            if @user && @user.authenticate(params[:password]) 
                 session[:user_id] = @user.id 
-                redirect "/users/#{@user.id}" #interpolated user's id and show correct profile for specific user
+                redirect "/users/#{@user.id}" 
             else
                 flash[:message] = "Invalid username or password"
                 redirect "/users/login"
             end
     end
 
-    get '/users/:id' do #restful and dynamic, based on current user's id, id is ingested from previous post action
-
+    get '/users/:id' do 
+        
         @user = User.find(params[:id]) 
             if logged_in? && @user == current_user 
                 erb :'/users/show'

@@ -16,4 +16,3 @@ ActiveRecord::Schema.define(version: 20201016224213) do
 
 end
 
-#schema.rb is what current shape of database tables are

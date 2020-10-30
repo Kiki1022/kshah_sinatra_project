@@ -1,13 +1,12 @@
 require './config/environment'
 
-class ApplicationController < Sinatra::Base #inheriting from Sinatra
-  
+class ApplicationController < Sinatra::Base 
 
   configure do
-    set :public_folder, 'public' #setting public folder public
-    set :views, 'app/views' #configuring our views
-    enable :sessions #hash readily availble to our controllers and enables session
-    set :session_secret, 'secret' #set a session secret for an extra layer of security
+    set :public_folder, 'public' 
+    set :views, 'app/views' 
+    enable :sessions 
+    set :session_secret, 'secret' 
     register Sinatra::Flash
   end
 
@@ -15,14 +14,14 @@ class ApplicationController < Sinatra::Base #inheriting from Sinatra
     erb :welcome
   end
 
-  helpers do #add functionality to application, can access in any controller
+  helpers do
  
     def logged_in?
-      !!session[:user_id] #boolean to return truthy or falsey if user is logged in or not
+      !!session[:user_id] 
     end
 
     def current_user
-     @current_user ||= User.find(session[:user_id])
+     @current_user ||= User.find(session[:user_id]) 
     end
   end
 end

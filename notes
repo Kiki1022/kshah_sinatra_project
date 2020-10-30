@@ -1,66 +1,25 @@
-User can create, read, update and delete an post.
-
-Interface:
- -User Can create an appointment
- -User can submit a appointment
- -User can edit a appointment
- -User can delete a appointment
-
- User class
-   x attributes  :username, :password
-   - user signs up, logs in 
-   x has many appointments
-   
-
-   User controller and views
-   x'/users/signup' => renders signup form 
-   x'/users/signup' => processes sign up form, creates user, appointment
-   -'/users/login' => renders login form
-   -'/users/login' => processes login form, appointment
-   -need to set sessions
-   -user can view their feed(homepage) with option to view profile
-
-
-   Appointment class
-   -attributes :date, :time, :event, :price, :special_requests
-   -appointment belongs to user
-
-   Appointment Controller and views
-   -'/appointments/new' renders new appt form
-   - '/appointments' submits appointment
-   -'/appointments' renders all appointments #read capability
-   -'/appointments/:id' renders one instance of appointments #read capability
-   -'/appointments/:id/edit renders update form for an instance
-   -/appointments/:id' updates instance
-   -'/orders/:id/delete' deletes instance
-
-Sessions:
-1. enable sessions
-2. utilize sessions hash in the methods that persist  user data into application 
-  
-Need to:
-have "edit" button next to "delete" button on clients/:id
-need to do somethng in ClientController?
-
-need to have user be able to successfully log out
-CSS 
- Associations (& validations if you wish to use them -- you’ll at least need a
-  validator to protect against duplicate login credentials across different users,
-  usually username or email)
-
-
-need to have header at each site, home/clients/logout and under that "NEW CLIENT" 
-flash[:error] = "#{user.errors.full_messages.to_sentence}. Please try again."
-
 Study notes:
  <form action="/users/login" method="POST"> i want to send data to this route(action), method is post. 
  in our form the params keys come from the 'name' its convention to name it exactly what i have in my schema
  action is dictates where the form should go aka mailing address('/login') 
  method is where we are actually sending our data back to. verb
  name is attribute
-when we send a get request to our route, it renders our login form. that login form renders an erb file. in that file is a form that we can send back our data with. our actions dictates where the from will go, method tells us the verb in which we want to send the address back to.
-when we hit submit the params(username and password that was set by name="" in form) get sent to the post login route and we can use it to first find the our user with params[:username] and if user is foundor truthy, we move on then we seeif we can authenticate user. authenticate method is giving from has_secure_passowrd macro. what it does is takes in the plain text password from our user and compares it to the salted password living in the password digest column in our database bcrypt hashing algorithm compares it to 
-after user is authenticated, we had a key value pair to their session hash, this is what logs them in and welcomes them in. we are going to log you in by giving you a key value pair in the sessions hash of your user_id and then redirect to their show page in the interpolated dynamic route. 
+when we send a get request to our route, it renders our login form. that login form renders an erb file. in that file is a form that we can send back our data with. our actions 
+dictates where the form will go, method tells us the verb in which we want to send the address back to.***
+when we hit submit the params(username and password that was set by name="" in form) get sent to the post login route and we can use it to first find the our user with 
+params[:username] and if user is found truthy, we move on then we seeif we can authenticate user. authenticate method is given from has_secure_passowrd macro. what it does is
+ takes in the plain text password from our user and compares it to the salted password living in the password digest column in our database bcrypt hashing algorithm compares it to 
+after user is authenticated, we had a key value pair to their session hash, this is what logs them in and welcomes them in. we are going to log you in by giving you a key value 
+pair in the sessions hash of your user_id and then redirect to their show page in the interpolated dynamic route. 
+class ApplicationController < Sinatra::Base #inheriting from Sinatra
+
+  #user makes request on browser, controller routes the user's http request to the appropriate route or action, then this action requests these objects 
+  #from the models 
+  #eg user.rb and then the models request data from db
+  #get, post is an http verb get is request that is sent to controller to get specific route
+  #post is an http verb that submits user's input to the database
+
+
    get '/users/login' do #rendering login form(erb file) when we send a get request to this route
         erb :'/users/login'
     end
@@ -69,7 +28,8 @@ after user is authenticated, we had a key value pair to their session hash, this
      
         @user = User.find_by(username: params[:username])  #find my username b/c that is the data we are getting back in our params
 
-            if @user && @user.authenticate(params[:password]) #has_secure_password gives us authenticate method, we want to call authenticate off of user in their params hash(params[:password]) this is actually what is going to authenticate user
+            if @user && @user.authenticate(params[:password]) #has_secure_password gives us authenticate method, we want to call authenticate off of user in their params 
+            hash(params[:password]) this is actually what is going to authenticate user
                 session[:user_id] = @user.id 
                 redirect "/users/#{@user.id}" #interpolated user's id and show correct profile for specific user
             else
@@ -78,8 +38,12 @@ after user is authenticated, we had a key value pair to their session hash, this
             end
     end
 
-
+MVC architecture relies heavily on the principle of separation of concerns. We make sure that we have a different model for every class we build, that we only have one
+ .erb file per view, etc. A model handles our Ruby logic, our controllers handle the HTTP requests and connect 
+ to our models, and our views either take in or display data to our users.
  
+  RESTful routes provides a design pattern that allows for easy data manipulation. It's nicer for users and nicer for developers to have everything consistent.
+
  has_secure_passowrd-
  but first we have to enable sessions. we do so in APplication Controller in configure block. 
  [ ]know difference bw authenticate user and enabling session hash
@@ -90,6 +54,126 @@ after user is authenticated, we had a key value pair to their session hash, this
 
  Helper method
  keeps track of logged in user. if we want to reference the currently logged in user in other controllers than UsersController. 
- We need to be able to reference current user so we can do CRUD for clients. Must know current user to create a client. will need user_id in the ClientController. 
+ We need to be able to reference current user so we can do CRUD functions for clients. Must know current user to create a client. will need user_id in the ClientController. 
  do block for helper methods. 
  how to find user that is logged in? we defined a session, we need to find user by key value pair 
+
+ORM OBJECT RELATIONAL MAPPING
+When "mapping" our program to a database, we equate classes with database tables and instances of those classes with table rows.
+
+There is no special programming magic to an ORM––it is simply a manner in which we implement the code that connects our Ruby program to our database. For example, you may have 
+seen code that connects your Ruby program to a given database:
+
+SQL (Structured Query Language) is a language for managing data in a database. Only used for one thing. talking to databases
+
+In the Models directory, Client and User class inherits from ActiveRecord's Ruby class to make use of ActiveRecord's built-in ORM methods. Client becomes a subclass of ActiveRecord::Base
+Our User and CLient class is now our gateway for talking to their respective tables in the database. 
+.find
+Retrieve a User from the database by id:
+User.find(1)
+
+.find_by
+Find by any attribute, such as name:
+User.find_by(name: 'Jon')
+
+RAKE
+Rake is a tool that is available to us in Ruby that allows us to automate certain jobs––anything from execute SQL to puts-ing out a friendly message to the terminal.
+running  rake db:migrate in your terminal to executes our table creations.
+
+A macro is a method that writes code for us (think metaprogramming). By invoking a few methods that come with Active Record, we can implement all of the associations we've been
+ discussing.
+
+MVC's
+Models: The 'logic' of a web application. This is where data is manipulated and/or saved.
+Views: The 'front-end', user-facing part of a web application - this is the only part of the app that the user interacts with directly. Views generally consist of HTML, CSS,
+and Javascript.
+Controllers: The go-between for models and views. The controller relays data from the browser to the application, and from the application to the browser.
+App directory holds models views and controllers
+Models
+    First, there are the cooks (the models) that make the food. They take orders (from the waiter), and prepare the customer's meal. Once ready, they give it to the waiter to
+     deliver to the customer.
+
+    In Sinatra, models are generally written as Ruby classes. Models can also connect to databases to persist data. Think of models as the main logic behind your web application.
+    Models represent the data and object logic of our application.
+
+Views
+    The customers place orders and receive plates of food (the views). The orders are placed with the waiter, who takes them back to the kitchen.
+
+    In Sinatra, views are written as .erb files, consisting of HTML and embedded Ruby (Ruby code written within HTML). They are what the user actually sees when they use 
+    your web application.
+
+Controllers
+    The waiters (the controllers) shuttle between the kitchen and the front of the restaurant. They take requests from the customer to the kitchen, and take prepared meals from 
+    the kitchen to the customer. Without the waiter, our customers would be hungry and our chefs would have nothing to do.
+
+    In Sinatra, controllers are written in Ruby and consist of 'routes' that take requests sent from the browser ("GET this data", "POST that data"), run code based on those requests by using models, and then render the .erb (view) files for the user to see.
+    The controllers, such as application_controller.rb, are where the application configurations, routes, and controller actions are implemented. There is typically a class, which in this case we will call ApplicationController, that represents an instance of your application when the server is up and running
+
+    ApplicationController is ruby class that inherits from Sintatra::Base. this inhereitance tranforms PORO into a Web APP
+
+GEMFILE 
+    This holds a list of all the gems needed to run the application. The bundler gem provides us access to a terminal command: bundle install
+    This will create Gemfile.lock which is a documentation of the specific gem versions that should be installed.
+
+app directory
+    This folder holds our MVC directories - models, views, and controllers. We spend most of our time coding in this directory.
+
+What are params? 
+HASH that stores the key value pairs of the attributes
+
+
+run application
+walk through
+
+validates make sure you don't persist bad data
+Look up verbage for active record errors
+
+Salted and Hashed password
+hashed pw may be same
+salting makes it unique despite having the same password
+
+ERB will render a form 
+redirect will redirect you to a specific route
+
+
+patch gives existing values and allows you to fix specific things
+put will totally replace it with new value 
+analogy of new car
+*REVIEWW*
+
+<form action="/clients/<%= @client.id %>" method="POST"> #we don't put patch here. we leave post, thats why in line 3 we overwrite method method with hidden
+        <input type="hidden" name="_method" value="patch"> elaborate
+        name= why? b/c is sets the name of the attributes
+
+PARAMS-hash stores key value pair of the attribute
+set by the name="" in html forms
+persist data by MIGRATIONS
+
+Logging out- means terminating session period of interaction bw a given user and the app. clears all the data including the user id from session hash.
+
+logging in- means storing a user id in the session hash. User.find_by[email: params[:email]]
+user id stored as value in session hash
+session is a hash where user id is stored as value
+session also a hash readily available to our controllers, session hash will always live on server
+
+Restful route is a route that provides mapping b/w http verbs(get,post, put, patch, delete) to controller CRUD actions.
+
+Foreign key points to primary key in another table
+
+   has_secure_password #*WHAT DOES AUTHENTICATE DO!!! has a method called authenticate. 
+    #takes an arugument of string pw and checks it against bcrypt pw digest. the pw digest is salted and hashed *WHAT does it mean to be salted and hashed
+    has_many :clients #macro that allows us to call user.clients provided by ActiveRecord
+    validates_uniqueness_of :username
+
+a cookie can keep all of the information in the clients browser until deleted
+sessions are not reliant on user allowing a cookie
+
+  session[:user_id] = @user.id #user_id is stored  in a sessions hash and they are able to perform crud capabilities this is when session begins
+
+  class User < ActiveRecord::Base #inherit from ActiveRecord need to do this and create migration
+    has_secure_password #*WHAT DOES AUTHENTICATE DO!!! has a method called authenticate. 
+    #takes an arugument of string pw and checks it against bcrypt pw digest. the pw digest is salted and hashed *WHAT does it mean to be salted and hashed
+    has_many :clients #macro that allows us to call user.clients provided by ActiveRecord
+    validates_uniqueness_of :username
+
+ 

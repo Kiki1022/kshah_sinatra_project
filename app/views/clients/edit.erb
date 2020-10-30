@@ -1,6 +1,6 @@
 
-<form action="/clients/<%= @client.id %>" method="POST">
-        <input type="hidden" name="_method" value="patch">
+<form action="/clients/<%= @client.id %>" method="POST"> #we don't put patch here. we leave post, thats why in line 3 we overwrite method with hidden
+        <input type="hidden" name="_method" value="patch"> 
             Client Name: <input type="text" value="<%=@client.name%>" name="name"><br>
             Email: <input type="email" value="<%=@client.email%>" name="email"><br>
             Look:
